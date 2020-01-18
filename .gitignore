@@ -4,6 +4,9 @@
 *.ap_
 *.aab
 env/
+DATA/
+AIR_DATA/
+
 # Files for the ART/Dalvik VM
 *.dex
 
