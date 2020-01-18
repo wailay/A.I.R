@@ -135,4 +135,7 @@ model_ft = train_model(model_ft, criterion, optimizer_ft, exp_lr_scheduler,
                        num_epochs=1)
 
 #saving model
-torch.save(model_ft, 'trained.pt')
+#torch.save(model_ft, 'trained.pt')
+example = torch.rand(1, 3, 224, 224)
+traced_script_module = torch.jit.trace(model_ft, example)
+traced_script_module.save("./model1.pt")
