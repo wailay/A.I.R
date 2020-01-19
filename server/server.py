@@ -1,9 +1,12 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_restful import Resource, Api,reqparse
 from utils.base64toimage import base64toimage
 from utils.predict import predict
 import pymongo
-
+from PIL import Image
+from bson import json_util
+import json
+import os
 app = Flask(__name__)
 api = Api(app)
 mongo = pymongo.MongoClient("mongodb://localhost:27017/")
@@ -21,12 +24,35 @@ class ImageAnalyser(Resource):
         
         prediction = predict(img)
         print(prediction)
-        return prediction
+        return {"result" : prediction}
 
-class TrashGeo(Resource):
+class GetAllTrash(Resource):
     def get(self):
-        # bins.insert({})
+        
+        allBins = bins.find({})    
+        a = json.loads(json_util.dumps(allBins))
+        return {"result" : a}
+
+class GetTrashPicture(Resource):
+    def get(self, trash_id):
+        
+        path = f'bin_images/{trash_id}.png'
+        # img = Image(./)
+        return "Asd"
+class AddTrash(Resource):
+    def post(self):
+        data = request.get_json(force=True)
+        img = data['image']
+        longitude = data['long']
+        lat = data['lat']
+        pass
 
 api.add_resource(ImageAnalyser, '/image')
+api.add_resource(GetAllTrash, '/trash')
+api.add_resource(AddTrash, '/trash')
+api.add_resource(GetTrashPicture, '/trash/<string:trash_id>')
+
+
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
