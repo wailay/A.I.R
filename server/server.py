@@ -47,13 +47,27 @@ class AddTrash(Resource):
 
         data = request.get_json(force=True)
         img = data['image']
-        longitude = data['long']
+        img = base64toimage(data['image'])
+        
         lat = data['lat']
-        pass
+        longitude = data['long']
+        category = data['category']
+        
+        binsInsert = {
+            "type" : "Point",
+            "coord" : [lat, longitude],
+            "category" : category,
+        }
+        _id = bins.insert_one(binsInsert)
+        _id = _id.inserted_id
+        print(_id)
+        url = f'./bin_images/{_id}.png'
+        img = img.save(url)
+        return {"result" : "Success added" }
 
 api.add_resource(ImageAnalyser, '/image')
 api.add_resource(GetAllTrash, '/trash')
-api.add_resource(AddTrash, '/trash')
+api.add_resource(AddTrash, '/trash/add')
 api.add_resource(GetTrashPicture, '/trash/<string:trash_id>')
 
 

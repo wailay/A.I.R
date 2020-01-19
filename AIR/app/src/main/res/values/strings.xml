@@ -6,7 +6,7 @@
 
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
+    
 
     <string name="menu_home_camera">Start Recycling</string>
     <string name="menu_near_trash">Find Nearest Trash Bin</string>
@@ -15,5 +15,9 @@
     <string name="menu_github">Github</string>
     <string name="menu_our_team">Our Team</string>
     <string name="title_activity_home_camera">Home Camera Activity</string>
-
+    <string-array name="menu">
+        <item>both</item>
+        <item>recycling</item>
+        <item>garbage</item>
+    </string-array>
 </resources>
