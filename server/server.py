@@ -37,6 +37,7 @@ class GetTrashPicture(Resource):
     def get(self, trash_id):
         
         path = f'bin_images/{trash_id}.png'
+        
         # img = Image(./)
         return "Asd"
 class AddTrash(Resource):
