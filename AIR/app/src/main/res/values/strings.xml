@@ -2,16 +2,16 @@
     <string name="app_name">AIR</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">A.I.R.</string>
+
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Start Recycling</string>
-    <string name="menu_gallery">Find Nearest Trash Bin</string>
-    <string name="menu_slideshow">Eco-Points</string>
-    <string name="menu_tools">Register Bin</string>
-    <string name="menu_share">Github</string>
-    <string name="menu_send">Our Team</string>
-    <string name="title_activity_home_camera">HomeCameraActivity</string>
+    <string name="menu_home_camera">Start Recycling</string>
+    <string name="menu_near_trash">Find Nearest Trash Bin</string>
+    <string name="menu_eco_points">Eco-Points</string>
+    <string name="menu_register_bin">Register Bin</string>
+    <string name="menu_github">Github</string>
+    <string name="menu_our_team">Our Team</string>
+    <string name="title_activity_home_camera">Home Camera Activity</string>
 </resources>
