@@ -59,9 +59,11 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, HomeCameraActivity.class);
                         startActivity(intent);
                         break;
+
                     case R.id.nav_near_trash:
                         Toast.makeText(getApplicationContext(), "Near_Trash", Toast.LENGTH_LONG).show();
-                        Intent intent2 = new Intent(MainActivity.this, NearestActivity.class);
+                        Intent intent2 = new Intent(MainActivity.this, NearestMapActivity.class);
+
                         startActivity(intent2);
                         break;
                     case R.id.nav_eco_points:
