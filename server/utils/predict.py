@@ -57,7 +57,7 @@ def predict_helper(model, idx_to_class, test_image):
 
 def predict(image):
     
-    model = torch.load('utils/PIZZA_CAN_model_9.pt')
+    model = torch.load('utils/DATA_model_9.pt')
 
     
     with open('utils/idx_to_class.pickle', 'rb') as handle:
