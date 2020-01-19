@@ -6,34 +6,78 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Base64;
+import android.view.LayoutInflater;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
+
 
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import net.ltm.air.R;
 
-public class NearestMapActivity extends FragmentActivity implements OnMapReadyCallback,
-        OnMyLocationClickListener, OnMyLocationButtonClickListener {
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import java.util.ArrayList;
+
+public class NearestMapActivity extends FragmentActivity implements OnMapReadyCallback,
+        OnMyLocationClickListener, OnMyLocationButtonClickListener, OnMarkerClickListener {
+    RequestQueue queue;
+    JSONObject allTrash = null;
+    String SERVER_URL = "http://10.200.22.190:5000/trash";
     private GoogleMap mMap;
+    Dialog garbageDialog;
+    ImageView garbageImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nearest_map);
+        queue = Volley.newRequestQueue(this);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        garbageImage = new ImageView(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(garbageImage);
+        //So we can call dialog.setMessage();
+        builder.setMessage("");
+        builder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+
+        // Create the AlertDialog object and return it
+        garbageDialog = builder.create();
 
     }
 
@@ -51,8 +95,72 @@ public class NearestMapActivity extends FragmentActivity implements OnMapReadyCa
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, SERVER_URL, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        allTrash = response;
+                        System.out.println("TEEESTT");
+                        System.out.println(allTrash);
+                        JSONArray all = null;
+                        try {
+                            all = allTrash.getJSONArray("result");
+                        }catch (Exception e){
+                            System.out.println(e);
+                        }
+
+                        for (int i = 0; i < all.length();  i++){
+                            try {
+                                String coords = all.getJSONObject(i).getString("coord");
+                                String category = all.getJSONObject(i).getString("category");
+                                System.out.println(category);
+                                String id = all.getJSONObject(i).getJSONObject("_id").getString("$oid");
+                                coords = coords.substring(1);
+                                coords = coords.substring(0, coords.length() - 1);
+                                System.out.println(coords);
+                                String[] coord = coords.split(",");
+                                double lat = Double.parseDouble(coord[0]);
+                                double longi = Double.parseDouble(coord[1]);
+                                Bitmap img = BitmapFactory.decodeResource(getResources(), R.drawable.recycling_ico_background);
+                                BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromBitmap(img);
+
+                                if (category.equals("both")){
+
+                                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, longi))
+                                            .title(id).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                                }else if(category.equals("garbage")) {
+                                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, longi))
+                                            .title(id).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                                }else{
+                                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, longi))
+                                            .title(id).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                                }
+
+
+
+                            }catch (Exception e){
+                                System.out.println(e);
+                            }
+                        }
+
+
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.out.println("ERROOOOOOOOOOOOOOOR "+ error.toString());
+
+                    }
+                });
+
+        queue.add(jsonObjectRequest);
+
+        System.out.println("TRRAAAAAASH");
+        System.out.println(allTrash);
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
+
 
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
@@ -80,10 +188,37 @@ public class NearestMapActivity extends FragmentActivity implements OnMapReadyCa
             mMap.setOnMyLocationButtonClickListener(this);
             mMap.setOnMyLocationClickListener(this);
         }
-
-//        mMap.setOnMyLocationButtonClickListener(this);
-//        mMap.setOnMyLocationClickListener(this);
+    mMap.setOnMarkerClickListener(this);
     }
+
+    @Override
+    public boolean onMarkerClick(final Marker marker) {
+
+        String id = marker.getTitle();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, SERVER_URL+"/"+id,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        System.out.println(response);
+                        Bitmap gbBm = b64toimage(response);
+                        garbageImage.setImageBitmap(gbBm);
+                        garbageDialog.show();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("EROOOOOOOOOOOR "+ error.toString());
+            }
+        });
+
+// Add the request to the RequestQueue.
+        queue.add(stringRequest);
+
+
+        return false;
+        }
     @Override
     public void onMyLocationClick(@NonNull Location location) {
         Toast.makeText(this, "Current location:\n" + location, Toast.LENGTH_LONG).show();
@@ -91,7 +226,7 @@ public class NearestMapActivity extends FragmentActivity implements OnMapReadyCa
 
     @Override
     public boolean onMyLocationButtonClick() {
-        Toast.makeText(this, "MyLocation button clicked", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, null, Toast.LENGTH_SHORT).show();
         // Return false so that we don't consume the event and the default behavior still occurs
         // (the camera animates to the user's current position).
         return false;
@@ -115,6 +250,13 @@ public class NearestMapActivity extends FragmentActivity implements OnMapReadyCa
             // other 'case' lines to check for other
             // permissions this app might request.
         }
+    }
+
+    public Bitmap b64toimage(String data){
+        byte[] decodedString = Base64.decode(data, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0,decodedString.length);
+        return decodedByte;
+
     }
 
 

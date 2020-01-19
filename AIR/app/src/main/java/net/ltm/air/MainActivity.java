@@ -55,37 +55,30 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.nav_home_camera:
-                        Toast.makeText(getApplicationContext(), "HOME", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(MainActivity.this, HomeCameraActivity.class);
+                        Intent intent = new Intent(MainActivity.this, CameraHomeActivity.class);
                         startActivity(intent);
                         break;
 
                     case R.id.nav_near_trash:
-                        Toast.makeText(getApplicationContext(), "Near_Trash", Toast.LENGTH_LONG).show();
                         Intent intent2 = new Intent(MainActivity.this, NearestMapActivity.class);
-
                         startActivity(intent2);
                         break;
                     case R.id.nav_eco_points:
-                        Toast.makeText(getApplicationContext(), "Eco_Points", Toast.LENGTH_LONG).show();
                         Intent intent3 = new Intent(MainActivity.this, EcoActivity.class);
                         startActivity(intent3);
                         break;
 
                     case R.id.nav_register_bin:
-                        Toast.makeText(getApplicationContext(), "Register_Bin", Toast.LENGTH_LONG).show();
                         Intent intent4 = new Intent(MainActivity.this, RegisterActivity.class);
                         startActivity(intent4);
                         break;
 
                     case R.id.nav_github:
-                        Toast.makeText(getApplicationContext(), "Github", Toast.LENGTH_LONG).show();
                         Intent intent5 = new Intent(MainActivity.this, RegisterActivity.class);
                         startActivity(intent5);
                         break;
 
                     case R.id.nav_our_team:
-                        Toast.makeText(getApplicationContext(), "Our Team", Toast.LENGTH_LONG).show();
                         Intent intent6 = new Intent(MainActivity.this, RegisterActivity.class);
                         startActivity(intent6);
                         break;

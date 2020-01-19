@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.ltm.air">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -10,8 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -21,10 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-        <activity android:name=".GithubActivity"></activity>
-
-
+        <activity android:name=".CameraHomeActivity"></activity>
+        <activity android:name=".GithubActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -35,23 +31,12 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-
-<!--        <activity-->
-<!--            android:name=".NearestMapActivity"-->
-<!--            android:label="@string/title_activity_nearest_map"></activity>-->
+            android:value="@string/google_maps_key" /> <!-- <activity -->
+        <!-- android:name=".NearestMapActivity" -->
+        <!-- android:label="@string/title_activity_nearest_map"></activity> -->
         <activity android:name=".RegisterActivity" />
         <activity android:name=".EcoActivity" />
         <activity android:name=".NearestMapActivity" />
-        <activity
-            android:name=".HomeCameraActivity"
-            android:label="@string/title_activity_home_camera"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="net.ltm.air.MainActivity" />
-        </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

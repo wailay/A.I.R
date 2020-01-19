@@ -7,6 +7,7 @@ from PIL import Image
 from bson import json_util
 import json
 import os
+import base64
 app = Flask(__name__)
 api = Api(app)
 mongo = pymongo.MongoClient("mongodb://localhost:27017/")
@@ -35,13 +36,15 @@ class GetAllTrash(Resource):
 
 class GetTrashPicture(Resource):
     def get(self, trash_id):
-        
-        path = f'bin_images/{trash_id}.png'
-        
-        # img = Image(./)
-        return "Asd"
+        print("ALOOOOO ", type(trash_id))
+        path = f'./bin_images/{trash_id}.png'
+        with open(path, "rb") as image_file:
+            encoded_string = base64.b64encode(image_file.read()).decode()
+        # print(encoded_string)
+        return encoded_string
 class AddTrash(Resource):
     def post(self):
+
         data = request.get_json(force=True)
         img = data['image']
         longitude = data['long']

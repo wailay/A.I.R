@@ -50,19 +50,18 @@ def predict_helper(model, idx_to_class, test_image):
         model.eval()
         # Model outputs log probabilities
         out = model(test_image_tensor)
-        nb_prediction = 3
+        nb_prediction = 1
         ps = torch.exp(out)
         topk, topclass = ps.topk(nb_prediction, dim=1)
-        
-        for i in range(nb_prediction):
-            print("Prediction", i+1, ":", idx_to_class[topclass.cpu().numpy()[0][i]], ", Score: ", topk.cpu().numpy()[0][i])
+        # print(idx_to_class)
+        return idx_to_class[topclass.cpu().numpy()[0][0]]
 
 def predict(image):
     
-    model = torch.load('utils/DATA_model_9.pt')
+    model = torch.load('utils/DATA_model_8.pt')
 
     
     with open('utils/idx_to_class.pickle', 'rb') as handle:
         idx_to_class = pickle.load(handle)
 
-    predict_helper(model, idx_to_class, image)
+    return predict_helper(model, idx_to_class, image)

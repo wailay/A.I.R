@@ -10,7 +10,7 @@ public class HomeViewModel extends ViewModel {
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("suck my fucking dick wail");
+        mText.setValue("Welcome !");
     }
 
     public LiveData<String> getText() {
