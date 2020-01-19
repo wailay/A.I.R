@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,6 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
+        <activity android:name=".GithubActivity"></activity>
+
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -33,12 +37,12 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".NearestMapActivity"
-            android:label="@string/title_activity_nearest_map"></activity>
+<!--        <activity-->
+<!--            android:name=".NearestMapActivity"-->
+<!--            android:label="@string/title_activity_nearest_map"></activity>-->
         <activity android:name=".RegisterActivity" />
         <activity android:name=".EcoActivity" />
-        <activity android:name=".NearestActivity" />
+        <activity android:name=".NearestMapActivity" />
         <activity
             android:name=".HomeCameraActivity"
             android:label="@string/title_activity_home_camera"

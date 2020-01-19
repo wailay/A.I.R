@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
+                R.id.nav_home_camera, R.id.nav_near_trash, R.id.nav_eco_points,
+                R.id.nav_register_bin, R.id.nav_github, R.id.nav_our_team)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -54,26 +54,40 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
-                    case R.id.nav_home:
+                    case R.id.nav_home_camera:
                         Toast.makeText(getApplicationContext(), "HOME", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(MainActivity.this, HomeCameraActivity.class);
                         startActivity(intent);
                         break;
-                    case R.id.nav_gallery:
-                        Toast.makeText(getApplicationContext(), "GALLERY", Toast.LENGTH_LONG).show();
+
+                    case R.id.nav_near_trash:
+                        Toast.makeText(getApplicationContext(), "Near_Trash", Toast.LENGTH_LONG).show();
                         Intent intent2 = new Intent(MainActivity.this, NearestMapActivity.class);
+
                         startActivity(intent2);
                         break;
-                    case R.id.nav_slideshow:
-                        Toast.makeText(getApplicationContext(), "SLIDE", Toast.LENGTH_LONG).show();
+                    case R.id.nav_eco_points:
+                        Toast.makeText(getApplicationContext(), "Eco_Points", Toast.LENGTH_LONG).show();
                         Intent intent3 = new Intent(MainActivity.this, EcoActivity.class);
                         startActivity(intent3);
                         break;
 
-                    case R.id.nav_tools:
-                        Toast.makeText(getApplicationContext(), "TOOLS", Toast.LENGTH_LONG).show();
+                    case R.id.nav_register_bin:
+                        Toast.makeText(getApplicationContext(), "Register_Bin", Toast.LENGTH_LONG).show();
                         Intent intent4 = new Intent(MainActivity.this, RegisterActivity.class);
                         startActivity(intent4);
+                        break;
+
+                    case R.id.nav_github:
+                        Toast.makeText(getApplicationContext(), "Github", Toast.LENGTH_LONG).show();
+                        Intent intent5 = new Intent(MainActivity.this, RegisterActivity.class);
+                        startActivity(intent5);
+                        break;
+
+                    case R.id.nav_our_team:
+                        Toast.makeText(getApplicationContext(), "Our Team", Toast.LENGTH_LONG).show();
+                        Intent intent6 = new Intent(MainActivity.this, RegisterActivity.class);
+                        startActivity(intent6);
                         break;
                 }
 
