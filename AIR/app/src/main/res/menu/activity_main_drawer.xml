@@ -5,38 +5,33 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_start_recycle"
+            android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Start Recycling" />
+            android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_near_trash"
+            android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Find nearest Trash Bin" />
-
+            android:title="@string/menu_gallery" />
         <item
-            android:id="@+id/nav_eco_points"
+            android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Eco-Points" />
+            android:title="@string/menu_slideshow" />
         <item
-            android:id="@+id/nav_register_trash"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Register Bin" />
-        <item
-            android:id="@+id/nav_info"
+            android:id="@+id/nav_tools"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Information" />
+            android:title="@string/menu_tools" />
     </group>
 
-    <item android:title="About us">
+    <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_github"
+                android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Github" />
+                android:title="@string/menu_share" />
             <item
-                android:id="@+id/nav_team"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Our Team" />
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/menu_send" />
         </menu>
     </item>
 
