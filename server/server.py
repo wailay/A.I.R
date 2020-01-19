@@ -1,5 +1,7 @@
 from flask import Flask, request
 from flask_restful import Resource, Api,reqparse
+from utils.base64toimage import base64toimage
+from utils.predict import predict
 
 app = Flask(__name__)
 api = Api(app)
@@ -9,8 +11,12 @@ class ImageAnalyser(Resource):
 
     def post(self):
         data = request.get_json(force=True)
-        print(data)
-        return "allo"
+        img = base64toimage(data['image'])
+        #prediction here
+        
+        prediction = predict(img)
+        print(prediction)
+        return prediction
 
 
 api.add_resource(ImageAnalyser, '/image')
