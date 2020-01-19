@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_start_recycle"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Start Recycling" />
+        <item
+            android:id="@+id/nav_near_trash"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Find nearest Trash Bin" />
+
+        <item
+            android:id="@+id/nav_eco_points"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Eco-Points" />
+        <item
+            android:id="@+id/nav_register_trash"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Register Bin" />
+        <item
+            android:id="@+id/nav_info"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Information" />
+    </group>
+
+    <item android:title="About us">
+        <menu>
+            <item
+                android:id="@+id/nav_github"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Github" />
+            <item
+                android:id="@+id/nav_team"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Our Team" />
+        </menu>
+    </item>
+
+</menu>

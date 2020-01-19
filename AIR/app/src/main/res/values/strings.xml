@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">A.I.R.</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="Information">Information</string>
+    <string name="Eco_Points">Eco-Points</string>
+    <string name="Add_Trash_Can">Add Trash Can</string>
+    <string name="Find_Nearest_Trash">Find Nearest Trash Bin</string>
+    <string name="Header_String">Start Recycling now!</string>
+    <string name="Github">Follow us on Github!</string>
+    <string name="Team">Our Team</string>
+</resources>
