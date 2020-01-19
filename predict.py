@@ -12,6 +12,8 @@ import os
 
 from PIL import Image
 
+import pickle
+
 
 def predict(model, test_image_name):
     '''
@@ -117,7 +119,11 @@ data = {
 }
 
 
-idx_to_class = {v: k for k, v in data['test'].class_to_idx.items()}
+#idx_to_class = {v: k for k, v in data['test'].class_to_idx.items()}
+
+with open('idx_to_class.pickle', 'rb') as handle:
+    idx_to_class = pickle.load(handle)
+
 predict(model, 'PIZZA_CAN/test/pizza_box/198.greenbox_pizza.jpg')
 
 
