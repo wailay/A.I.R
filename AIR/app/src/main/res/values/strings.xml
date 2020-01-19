@@ -14,4 +14,5 @@
     <string name="menu_share">Github</string>
     <string name="menu_send">Our Team</string>
     <string name="title_activity_home_camera">HomeCameraActivity</string>
+    <string name="title_activity_nearest_map">Map</string>
 </resources>

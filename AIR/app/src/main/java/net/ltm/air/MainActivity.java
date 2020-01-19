@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_gallery:
                         Toast.makeText(getApplicationContext(), "GALLERY", Toast.LENGTH_LONG).show();
-                        Intent intent2 = new Intent(MainActivity.this, NearestActivity.class);
+                        Intent intent2 = new Intent(MainActivity.this, NearestMapActivity.class);
                         startActivity(intent2);
                         break;
                     case R.id.nav_slideshow:
