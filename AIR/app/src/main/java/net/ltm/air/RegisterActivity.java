@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity implements OnItemSelecte
     String selectedCategory;
     Button registerBtn;
     RequestQueue queue;
-    String SERVER_URL = "http://10.200.22.190:5000/trash/add";
+    String SERVER_URL = "http://10.200.46.211:5000/trash/add";
     private FusedLocationProviderClient fusedLocationClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

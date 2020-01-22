@@ -6,7 +6,7 @@
 env/
 DATA/
 AIR_DATA/
-
+.vscode/
 # Files for the ART/Dalvik VM
 *.dex
 

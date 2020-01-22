@@ -52,7 +52,7 @@ public class NearestMapActivity extends FragmentActivity implements OnMapReadyCa
         OnMyLocationClickListener, OnMyLocationButtonClickListener, OnMarkerClickListener {
     RequestQueue queue;
     JSONObject allTrash = null;
-    String SERVER_URL = "http://10.200.22.190:5000/trash";
+    String SERVER_URL = "http://10.200.46.211:5000/trash";
     private GoogleMap mMap;
     Dialog garbageDialog;
     ImageView garbageImage;

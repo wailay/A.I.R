@@ -71,7 +71,7 @@ public class CameraHomeActivity extends AppCompatActivity {
     String predictionRes;
     TextView messageToUser;
     ImageView reclybaleImg;
-    String SERVER_URL ="http://10.200.22.190:5000/image";
+    String SERVER_URL ="http://10.200.46.211:5000/image";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
